@@ -1,0 +1,2 @@
+defmodule Moyashi do
+end
