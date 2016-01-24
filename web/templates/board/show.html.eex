@@ -1,18 +1,1 @@
-<h2>Show board</h2>
-
-<ul>
-
-  <li>
-    <strong>Slug:</strong>
-    <%= @board.slug %>
-  </li>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @board.title %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: board_path(@conn, :edit, @board) %>
-<%= link "Back", to: board_path(@conn, :index) %>
+<h1>/<%= @board.slug %>/ - <%= @board.title %></h1>

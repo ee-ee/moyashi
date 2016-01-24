@@ -1,3 +1,3 @@
 # 🌱 ｍｏｙａｓｈｉ
 
-Imageboards, done right.
+Imageboards done right.

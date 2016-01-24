@@ -1,0 +1,8 @@
+<nav class="boardlist">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <%= for board <- @boards do %>
+            <li><%= link "/" <> board.slug <> "/", to: board_path(@conn, :show, board) %></li>
+        <% end %>
+    </ul>
+</nav>
