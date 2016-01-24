@@ -2,7 +2,10 @@ exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
     javascripts: {
-      joinTo: "js/app.js"
+      joinTo: {
+        "js/app.js": /^(web\/static\/js)/,
+        "js/vendor.js": /^(web\/static\/vendor)|(deps)/
+      }
 
       // To use a separate vendor.js bundle, specify two files path
       // https://github.com/brunch/brunch/blob/stable/docs/config.md#files
@@ -65,6 +68,6 @@ exports.config = {
     enabled: true,
     // Whitelist the npm deps to be pulled in as front-end assets.
     // All other deps in package.json will be excluded from the bundle.
-    whitelist: ["phoenix", "phoenix_html"]
+    whitelist: ["instantclick"]
   }
 };
