@@ -34,9 +34,5 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :moyashi, Moyashi.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "moyashi_dev",
-  hostname: "localhost",
-  pool_size: 10
+  adapter: Sqlite.Ecto,
+  database: "moyashi.sqlite3"

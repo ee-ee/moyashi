@@ -18,7 +18,7 @@ defmodule Moyashi.Router do
 
     get "/", PageController, :index
     resources "/boards", BoardController do
-      resources "posts", PostController
+      resources "/threads", ThreadController
     end
   end
 

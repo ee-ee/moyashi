@@ -11,9 +11,5 @@ config :logger, level: :warn
 
 # Configure your database
 config :moyashi, Moyashi.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "moyashi_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  adapter: Sqlite.Ecto,
+  database: "moyashi.sqlite3"

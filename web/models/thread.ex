@@ -2,15 +2,16 @@ defmodule Moyashi.Thread do
   use Moyashi.Web, :model
 
   schema "threads" do
-    field :name, :string
+    field :name, :string, default: "Anonymous"
     field :email, :string
+    field :body, :string
     belongs_to :board, Moyashi.Board
 
     timestamps
   end
 
-  @required_fields ~w(name email)
-  @optional_fields ~w()
+  @required_fields ~w(body)
+  @optional_fields ~w(name email)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
