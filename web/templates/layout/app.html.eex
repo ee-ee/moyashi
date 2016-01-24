@@ -5,13 +5,18 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Moyashi</title>
+        <title>🌱 Moyashi</title>
         <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     </head>
     <body>
+        <nav class="boardlist">
+        <ul>
+        <%= for board <- @boards do %>
+            <li><%= link "/" <> board.slug <> "/", to: board_path(@conn, :show, board) %></li>
+        <% end %>
+        </ul>
+        </nav>
         <%= render @view_module, @view_template, assigns %>
-        <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
-        <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-        <script data-no-instant>InstantClick.init();</script><Paste>
+        <script src="<%= static_path(@conn, "/js/app.js") %>" data-no-instant></script>
     </body>
 </html>

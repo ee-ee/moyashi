@@ -11,8 +11,9 @@ defmodule Moyashi.BoardController do
   end
 
   def new(conn, _params) do
+    boards = Repo.all(Board)
     changeset = Board.changeset(%Board{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, boards: boards)
   end
 
   def create(conn, %{"board" => board_params}) do
@@ -24,19 +25,22 @@ defmodule Moyashi.BoardController do
         |> put_flash(:info, "Board created successfully.")
         |> redirect(to: board_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        boards = Repo.all(Board)
+        render(conn, "new.html", changeset: changeset, boards: boards)
     end
   end
 
   def show(conn, %{"id" => id}) do
+    boards = Repo.all(Board)
     board = Repo.get!(Board, id)
-    render(conn, "show.html", board: board)
+    render(conn, "show.html", board: board, boards: boards)
   end
 
   def edit(conn, %{"id" => id}) do
+    boards = Repo.all(Board)
     board = Repo.get!(Board, id)
     changeset = Board.changeset(board)
-    render(conn, "edit.html", board: board, changeset: changeset)
+    render(conn, "edit.html", board: board, changeset: changeset, boards: boards)
   end
 
   def update(conn, %{"id" => id, "board" => board_params}) do
@@ -49,7 +53,8 @@ defmodule Moyashi.BoardController do
         |> put_flash(:info, "Board updated successfully.")
         |> redirect(to: board_path(conn, :show, board))
       {:error, changeset} ->
-        render(conn, "edit.html", board: board, changeset: changeset)
+        boards = Repo.all(Board)
+        render(conn, "edit.html", board: board, changeset: changeset, boards: boards)
     end
   end
 

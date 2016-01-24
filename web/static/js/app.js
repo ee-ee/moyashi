@@ -6,6 +6,7 @@
 // explicitly imported. The only exception are files
 // in vendor, which are never wrapped in imports and
 // therefore are always executed.
+import "phoenix_html";
 
 // Import dependencies
 //
@@ -17,4 +18,4 @@
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
+//import socket from "./socket"

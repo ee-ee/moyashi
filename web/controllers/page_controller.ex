@@ -3,7 +3,7 @@ defmodule Moyashi.PageController do
   alias Moyashi.Board
 
   def index(conn, _params) do
-    board = Repo.all(Board)
-    render(conn, "index.html", board: board)
+    boards = Repo.all(Board)
+    render(conn, "index.html", boards: boards)
   end
 end
