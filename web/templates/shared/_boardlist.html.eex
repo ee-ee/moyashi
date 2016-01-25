@@ -2,7 +2,7 @@
     <ul>
         <li><a href="/">Home</a></li>
         <%= for board <- @boards do %>
-            <li><%= link "/" <> board.slug <> "/", to: board_thread_path(@conn, :index, board) %></li>
+            <li><a href="/<%= board.slug %>/">/<%= board.slug %>/</a></li>
         <% end %>
     </ul>
 </nav>

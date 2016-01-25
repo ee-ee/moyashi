@@ -20,6 +20,7 @@ defmodule Moyashi.Router do
     resources "/boards", BoardController, param: "slug" do
       resources "/threads", ThreadController
     end
+    get "/:board_slug", ThreadController, :index
   end
 
   # Other scopes may use custom stacks.
