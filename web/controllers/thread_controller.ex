@@ -6,6 +6,7 @@ defmodule Moyashi.ThreadController do
   import Ecto.Query
 
   def index(conn, %{"board_slug" => board_slug}) do
+    boards = Repo.all(Board)
     board = Board
     |> Repo.get_by(slug: board_slug)
 
@@ -13,7 +14,7 @@ defmodule Moyashi.ThreadController do
     |> where(board_id: ^board.id)
     |> Repo.all
 
-    render(conn, "index.html", threads: threads)
+    render(conn, "index.html", boards: boards, board: board, threads: threads)
   end
 
   def new(conn, _params) do
