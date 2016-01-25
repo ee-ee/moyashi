@@ -1,4 +1,4 @@
-defmodule Moyashi.Web do
+ defmodule Moyashi.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.

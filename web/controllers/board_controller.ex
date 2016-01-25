@@ -30,21 +30,21 @@ defmodule Moyashi.BoardController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"slug" => slug}) do
     boards = Repo.all(Board)
-    board = Repo.get!(Board, id)
+    board = Repo.get_by!(Board, slug: slug)
     render(conn, "show.html", board: board, boards: boards)
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, %{"slug" => slug}) do
     boards = Repo.all(Board)
-    board = Repo.get!(Board, id)
+    board = Repo.get_by!(Board, slug: slug)
     changeset = Board.changeset(board)
     render(conn, "edit.html", board: board, changeset: changeset, boards: boards)
   end
 
-  def update(conn, %{"id" => id, "board" => board_params}) do
-    board = Repo.get!(Board, id)
+  def update(conn, %{"slug" => slug, "board" => board_params}) do
+    board = Repo.get_by!(Board, slug: slug)
     changeset = Board.changeset(board, board_params)
 
     case Repo.update(changeset) do
@@ -58,8 +58,8 @@ defmodule Moyashi.BoardController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    board = Repo.get!(Board, id)
+  def delete(conn, %{"slug" => slug}) do
+    board = Repo.get_by!(Board, slug: slug)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).

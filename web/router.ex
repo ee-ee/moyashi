@@ -17,7 +17,7 @@ defmodule Moyashi.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/boards", BoardController do
+    resources "/boards", BoardController, param: "slug" do
       resources "/threads", ThreadController
     end
   end
