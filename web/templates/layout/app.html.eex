@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     </head>
     <body>
-        
+        <%= render Moyashi.SharedView, "_boardlist.html", boards: @boards, conn: @conn %>
         <%= render @view_module, @view_template, assigns %>
         <script src="<%= static_path(@conn, "/js/app.js") %>" data-no-instant></script>
     </body>

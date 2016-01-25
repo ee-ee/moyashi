@@ -1,8 +1,0 @@
-<h1>/<%= @board.slug %>/ - <%= @board.title %></h1>
-<form class="post">
-    <input type="text" id="name" placeholder="Name" />
-    <input type="text" id="email" placeholder="Email" />
-    <textarea id="body"></textarea>
-    <input type="file" />
-    <input type="submit" value="New Thread" />
-</form>

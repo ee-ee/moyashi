@@ -1,23 +1,24 @@
+<h1>/<%= @board.slug %>/ - <%= @board.title %></h1>
+<form class="post">
+    <input type="text" id="name" placeholder="Name" />
+    <input type="text" id="email" placeholder="Email" />
+    <textarea id="body"></textarea>
+    <input type="file" />
+    <input type="submit" value="New Thread" />
+</form>
+
+<div class="threads">
 <%= for thread <- @threads do %>
-  <table style="border: 2px solid black">
-    <thead>
-      <tr>
-        <th class="thread-name">
-          <span class="thread-name" style="color: #f30; padding-right: 5px"><%= thread.name %></span>
-          <span class="thread-timestamp" style="padding-right: 5px"><%= thread.inserted_at %></span>
-          <span class="thread-id" style="padding-right: 5px">No. <%= thread.id %></span>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <p>
-            <%= thread.body %>
-          </p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <br>
+    <div class="thread">
+        <hr>
+        <div class="post">
+            <p class="intro">
+                <span class="name"><%= thread.name %></span>
+                <time><%= thread.inserted_at %></time>
+                No. <%= thread.id %>
+            </p>
+            <p class="body"><%= thread.body %></p>
+        </div>
+    </div>
 <% end %>
+</div>
