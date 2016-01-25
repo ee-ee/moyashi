@@ -1,0 +1,5 @@
+<%= render "thread.html",
+    conn: @conn,
+    board: @board,
+    thread: @thread,
+    action: "show" %>
