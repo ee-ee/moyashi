@@ -37,7 +37,8 @@ defmodule Moyashi.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
-     {:sqlite_ecto, "~> 1.0.0"}]
+     {:sqlite_ecto, "~> 1.0.0"},
+     {:timex, "~> 1.0.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

@@ -23,4 +23,10 @@ defmodule Moyashi.Thread do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def format_date(date) do
+    {:ok, date} = Ecto.DateTime.dump(date)
+    Timex.Date.from(date)
+    |> Timex.DateFormat.format!("%H:%M %d/%m/%y", :strftime)
+  end
 end
