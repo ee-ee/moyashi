@@ -1,0 +1,16 @@
+<div class="thread">
+    <hr>
+    <div class="post">
+        <p class="intro">
+            <span class="name"><%= @thread.name %></span>
+            <time><%= @thread.inserted_at %></time>
+            No. <%= @thread.id %>
+        </p>
+        <p class="body"><%= @thread.body %></p>
+        <%= if @action == "index" do %>
+            <%= link "View Thread »", to: thread_path(@conn, :show, @board.slug, @thread.id), class: "viewthread" %>
+        <% else %>
+            <%= link "« Go Back", to: thread_path(@conn, :index, @board.slug), class: "return" %>
+        <% end %>
+    </div>
+</div>
