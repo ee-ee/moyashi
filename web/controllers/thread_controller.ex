@@ -18,6 +18,7 @@ defmodule Moyashi.ThreadController do
   end
 
   def new(conn, _params) do
+    boards = Repo.all(Board)
     threads = Repo.all(Thread)
     changeset = Thread.changeset(%Thread{})
 
@@ -25,6 +26,7 @@ defmodule Moyashi.ThreadController do
   end
 
   def create(conn, %{"board_slug" => board_slug, "thread" => thread_params}) do
+    boards = Repo.all(Board)
     board = Board
     |> Repo.get_by(slug: board_slug)
 
