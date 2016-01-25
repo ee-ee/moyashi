@@ -21,7 +21,7 @@ defmodule Moyashi.ThreadController do
     threads = Repo.all(Thread)
     changeset = Thread.changeset(%Thread{})
 
-    render(conn, "new.html", changeset: changeset, threads: threads)
+    render(conn, "new.html", changeset: changeset, boards: boards, threads: threads)
   end
 
   def create(conn, %{"board_slug" => board_slug, "thread" => thread_params}) do
@@ -36,7 +36,7 @@ defmodule Moyashi.ThreadController do
         |> put_flash(:info, "Thread created  successfully.")
         |> redirect(to: board_thread_path(conn, :index, board_slug))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, boards: boards)
     end
   end
 
