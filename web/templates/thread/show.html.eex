@@ -1,3 +1,4 @@
+<h1>/<%= @board.slug %>/ - <%= @board.title %></h1>
 <%= render "thread.html",
     conn: @conn,
     board: @board,
