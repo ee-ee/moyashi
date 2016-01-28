@@ -1,4 +1,4 @@
-defmodule Moyashi.PageControllerTest do
+defmodule Moyashi.ThreadControllerTest do
   use Moyashi.ConnCase
 
   test "GET /", %{conn: conn} do

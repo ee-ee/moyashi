@@ -1,0 +1,29 @@
+<%= if @post.parent_id !== nil do %>
+    <div class="post reply">
+<% end %>
+    <div class="files">
+        <%= if @post.parent_id === nil do %>
+            <div class="file">
+              <a class="image" href="http://lorempixel.com/g/1920/1080/cats" target="_blank">
+                <img class="thumb" src="http://lorempixel.com/g/255/255/cats" width="255" height="255">
+              </a>
+            </div>
+        <% end %>
+    </div>
+<%= if @post.parent_id === nil do %>
+    <div class="post op">
+<% end %>
+    <p class="info">
+        <span class="name"><%= @post.name %></span>
+        <time datetime="<%= @post.inserted_at %>">
+            <%= Moyashi.Post.format_date(@post.inserted_at) %>
+        </time>
+        #<%= @post.id %>
+    </p>
+    <div class="body"><%= @post.body %></div>
+    <%= if @action == "index" && @post.parent_id === nil do %>
+        <p class="omitted"></p>
+        <%= link "View Thread »", to: thread_path(@conn, :show, @board.slug, @post.id), class: "viewthread" %>
+    <% end %>
+</div>
+<br>

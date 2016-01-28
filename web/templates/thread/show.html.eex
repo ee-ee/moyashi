@@ -1,6 +1,12 @@
 <h1>/<%= @board.slug %>/ - <%= @board.title %></h1>
-<%= render "thread.html",
-    conn: @conn,
-    board: @board,
+<%= render "form.html",
+    changeset: @changeset,
     thread: @thread,
-    action: "show" %>
+    action: thread_path(@conn, :create, @board.slug) %>
+<div class="threads">
+    <%= render "thread.html",
+        conn: @conn,
+        board: @board,
+        thread: @thread,
+        action: "show" %>
+</div>

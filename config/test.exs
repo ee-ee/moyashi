@@ -12,4 +12,6 @@ config :logger, level: :warn
 # Configure your database
 config :moyashi, Moyashi.Repo,
   adapter: Sqlite.Ecto,
-  database: "moyashi.sqlite3"
+  database: "moyashi.sqlite3",
+  pool: Ecto.Adapters.SQL.Sandbox
+

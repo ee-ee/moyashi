@@ -1,25 +1,14 @@
+<%= if @action == "show" do %>
+    <%= link "« Go Back", to: thread_path(@conn, :index, @board.slug), class: "return" %>
+<% end %>
+<hr>
 <div class="thread">
-    <%= if @action == "show" do %>
-        <%= link "« Go Back", to: thread_path(@conn, :index, @board.slug), class: "return" %>
+    <%= for post <- @thread do %>
+        <%= render "post.html",
+            conn: @conn,
+            board: @board,
+            thread: @thread,
+            post: post,
+            action: @action %>
     <% end %>
-    <hr>
-    <div class="post op">
-        <div class="files">
-            <a class="image" href="http://lorempixel.com/g/1920/1080/cats" target="_blank">
-                <img class="thumb" src="http://lorempixel.com/g/255/255/cats" width="255" height="255">
-            </a>
-        </div>
-        <p class="info">
-            <span class="name"><%= @thread.name %></span>
-            <time datetime="<%= @thread.inserted_at %>">
-                <%= Moyashi.Thread.format_date(@thread.inserted_at) %>
-            </time>
-            #<%= @thread.id %>
-        </p>
-        <blockquote class="body"><%= @thread.body %></blockquote>
-        <%= if @action == "index" do %>
-            <p class="omitted">74 replies and 9 images omitted.</p>
-            <%= link "View Thread »", to: thread_path(@conn, :show, @board.slug, @thread.id), class: "viewthread" %>
-        <% end %>
-    </div>
 </div>

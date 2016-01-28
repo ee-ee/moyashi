@@ -5,5 +5,8 @@
     <%= error_tag f, :email %>
     <%= textarea f, :body %>
     <%= error_tag f, :body %>
-    <%= submit "New Thread" %>
+    <%= if assigns[:thread] do %>
+        <%= hidden_input f, :parent_id, [value: hd(@thread).id] %>
+    <% end %>
+    <%= submit "Post" %>
 <% end %>

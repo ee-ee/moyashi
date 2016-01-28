@@ -3,7 +3,7 @@ defmodule Moyashi.ThreadTest do
 
   alias Moyashi.Thread
 
-  @valid_attrs %{email: "some content", name: "some content"}
+  @valid_attrs %{email: "some content", name: "some content", body: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
