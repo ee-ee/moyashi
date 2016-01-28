@@ -24,8 +24,10 @@ defmodule Moyashi.ThreadController do
         thread = [op]
         replies_query = from p in Post,
             where: p.parent_id == ^op.id,
+            order_by: [desc: p.inserted_at],
             limit: 3
         replies = Repo.all(replies_query)
+        replies = Enum.reverse(replies)
         thread = thread ++ replies
         threads = threads ++ thread
     end
