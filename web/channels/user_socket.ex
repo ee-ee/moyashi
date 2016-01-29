@@ -2,7 +2,7 @@ defmodule Moyashi.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Moyashi.RoomChannel
+  channel "threads:*", Moyashi.ThreadChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

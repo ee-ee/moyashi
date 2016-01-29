@@ -55,12 +55,19 @@ defmodule Moyashi.ThreadController do
     changeset = Post.changeset(%Post{board_id: board.id}, post_params)
 
     case Repo.insert(changeset) do
-      {:ok, _thread} ->
+      {:ok, _post} ->
         if post_params["parent_id"] === nil do
-          id = _thread.id
+          id = _post.id
         else
           id = post_params["parent_id"]
         end
+
+        channel = "threads:" <> board_slug <> "/" <> id
+        Moyashi.Endpoint.broadcast! channel, "new_post",
+        %{id: _post.id,
+          name: _post.name,
+          body: _post.body,
+          inserted_at: _post.inserted_at}
 
         conn
         |> put_flash(:info, "Post created  successfully.")

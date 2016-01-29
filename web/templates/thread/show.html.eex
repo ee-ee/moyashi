@@ -10,3 +10,4 @@
         thread: @thread,
         action: "show" %>
 </div>
+<script>window.threadChannel = "threads:<%= @board.slug %>/<%= hd(@thread).id %>";</script>

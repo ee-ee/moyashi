@@ -1,4 +1,5 @@
 'use strict';
+import socket from "./socket"
 
 var ready = function(fn) {
   if (document.readyState != 'loading'){

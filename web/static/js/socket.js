@@ -3,9 +3,9 @@
 
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/my_app/endpoint.ex":
-import {Socket} from "phoenix"
+import {Socket} from "phoenix";
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", {params: {token: window.userToken}});
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -51,12 +51,43 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 // Finally, pass the token on connect as below. Or remove it
 // from connect if you don't care about authentication.
 
-socket.connect()
+socket.connect();
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+let channel = socket.channel(window.threadChannel, {});
+let threadContainer = document.querySelectorAll('div.thread')[0];
 
-export default socket
+let format_date = function(datestr) {
+    let datetime = new Date(datestr);
+    let month = ('0' + (datetime.getMonth()+1)).slice(-2);
+    let year = datetime.getFullYear();
+    year = String(year).substr(2,2)
+    return datetime.getHours() + ':' + datetime.getMinutes() + ' ' + datetime.getDate() + '/' + month + '/' + year
+};
+
+channel.on("new_post", payload => {
+  let newPost = document.createDocumentFragment();
+
+  let postDiv = document.createElement('div');
+  postDiv.classList.add('post');
+  postDiv.classList.add('reply');
+  let date = format_date(payload.inserted_at);
+  postDiv.innerHTML = '<div class="files"></div>\
+    <p class="info">\
+        <span class="name">'+payload.name+'</span>\
+        <time datetime="'+date+'">'+date+'</time>\
+        #'+payload.id+'</p>\
+    <div class="body">'+payload.body+'</div>';
+  newPost.appendChild(postDiv);
+
+  let lineBreak = document.createElement('br');
+  newPost.appendChild(lineBreak);
+
+  threadContainer.appendChild(newPost);
+});
+
+channel.join()
+  .receive("ok", resp => { console.log("Joined successfully", resp); })
+  .receive("error", resp => { console.log("Unable to join", resp); });
+
+export default socket;
