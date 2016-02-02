@@ -1,9 +1,9 @@
 <%= form_for @changeset, @action, [multipart: true, class: "post"], fn f -> %>
-    <%= text_input f, :name %>
+    <%= text_input f, :name, [placeholder: "Name"] %>
     <%= error_tag f, :name %>
-    <%= text_input f, :email %>
+    <%= text_input f, :email, [placeholder: "Email"] %>
     <%= error_tag f, :email %>
-    <%= textarea f, :body %>
+    <%= textarea f, :body, [placeholder: "Text"] %>
     <%= error_tag f, :body %>
     <%= file_input f, :form %>
     <%= if assigns[:thread] do %>
