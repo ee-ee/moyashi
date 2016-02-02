@@ -46,4 +46,6 @@ var App = {
     }
 };
 
+export default App;
+
 ready(App.inlineExpansion);

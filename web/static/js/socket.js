@@ -1,3 +1,4 @@
+import App from "./app";
 import {Socket} from "phoenix";
 
 let socket = new Socket("/socket", {params: {token: window.userToken}});
@@ -43,9 +44,16 @@ channel.on("new_post", payload => {
 
   let lineBreak = document.createElement('br');
   newPost.appendChild(lineBreak);
-
+  assignEvents(newPost);
   threadContainer.appendChild(newPost);
 });
+
+let assignEvents = function(el) {
+  let thumbs = el.querySelectorAll('a.image');
+  for (let i = 0; i < thumbs.length; ++i) {
+    thumbs[i].addEventListener('click', App.expandImage);
+  }
+}
 
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp); })
