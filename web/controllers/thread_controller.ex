@@ -53,15 +53,20 @@ defmodule Moyashi.ThreadController do
     board = Board
     |> Repo.get_by(slug: board_slug)
 
-    file_upload = post_params["attach"]
+    file_upload = post_params["form"]
 
-    image = Mogrify.open(file_upload.path)
-    |> Mogrify.copy
-    |> Mogrify.format("jpg")
-    |> Mogrify.resize("500x500")
-    |> Mogrify.save("files/" <> board_slug <> "/" <> to_string(:os.system_time(:milli_seconds)) <> ".jpg")
+    unless file_upload === nil do
+      image = Mogrify.open(file_upload.path)
+      |> Mogrify.copy
+      |> Mogrify.format("jpg")
+      |> Mogrify.resize("500x500")
+      |> Mogrify.save("files/" <> board_slug <> "/" <> to_string(:os.system_time(:milli_seconds)) <> ".jpg")
+      attach = image.path
+    else
+      attach = nil
+    end
 
-    changeset = Post.changeset(%Post{board_id: board.id, attach: image.path}, post_params)
+    changeset = Post.changeset(%Post{board_id: board.id, attach: attach}, post_params)
 
     case Repo.insert(changeset) do
       {:ok, _post} ->
@@ -76,6 +81,7 @@ defmodule Moyashi.ThreadController do
         %{id: _post.id,
           name: _post.name,
           body: _post.body,
+          attach: attach,
           inserted_at: _post.inserted_at}
 
         conn

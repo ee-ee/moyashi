@@ -61,8 +61,8 @@ let format_date = function(datestr) {
     let datetime = new Date(datestr);
     let month = ('0' + (datetime.getMonth()+1)).slice(-2);
     let year = datetime.getFullYear();
-    year = String(year).substr(2,2)
-    return datetime.getHours() + ':' + datetime.getMinutes() + ' ' + datetime.getDate() + '/' + month + '/' + year
+    year = String(year).substr(2,2);
+    return datetime.getHours() + ':' + datetime.getMinutes() + ' ' + datetime.getDate() + '/' + month + '/' + year;
 };
 
 channel.on("new_post", payload => {
@@ -72,12 +72,21 @@ channel.on("new_post", payload => {
   postDiv.classList.add('post');
   postDiv.classList.add('reply');
   let date = format_date(payload.inserted_at);
-  postDiv.innerHTML = '<div class="files"></div>\
+  let html = '<div class="files">';
+  if(payload.attach) {
+    html += '<div class="file">\
+              <a class="image" href="/'+payload.attach+'" target="_blank">\
+                <img class="thumb" src="/'+payload.attach+'" width="255">\
+              </a>\
+            </div>';
+  }
+  html += '</div>\
     <p class="info">\
         <span class="name">'+payload.name+'</span>\
         <time datetime="'+date+'">'+date+'</time>\
         #'+payload.id+'</p>\
     <div class="body">'+payload.body+'</div>';
+  postDiv.innerHTML = html;
   newPost.appendChild(postDiv);
 
   let lineBreak = document.createElement('br');
