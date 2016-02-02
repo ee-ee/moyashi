@@ -2,10 +2,10 @@
     <div class="post reply">
 <% end %>
     <div class="files">
-        <%= if @post.parent_id === nil do %>
+        <%= if @post.attach do %>
             <div class="file">
-              <a class="image" href="http://lorempixel.com/g/1920/1080/cats" target="_blank">
-                <img class="thumb" src="http://lorempixel.com/g/255/255/cats" width="255" height="255">
+              <a class="image" href="/<%= @post.attach %>" target="_blank">
+                <img class="thumb" src="/<%= @post.attach %>" width="255">
               </a>
             </div>
         <% end %>

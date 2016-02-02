@@ -53,7 +53,7 @@ defmodule Moyashi.ThreadController do
     board = Board
     |> Repo.get_by(slug: board_slug)
 
-    file_upload = post_params["file"]
+    file_upload = post_params["attach"]
 
     image = Mogrify.open(file_upload.path)
     |> Mogrify.copy

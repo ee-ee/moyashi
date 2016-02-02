@@ -5,7 +5,7 @@
     <%= error_tag f, :email %>
     <%= textarea f, :body %>
     <%= error_tag f, :body %>
-    <%= file_input f, :file %>
+    <%= file_input f, :attach %>
     <%= if assigns[:thread] do %>
         <%= hidden_input f, :parent_id, [value: hd(@thread).id] %>
     <% end %>
