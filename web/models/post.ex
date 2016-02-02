@@ -5,6 +5,7 @@ defmodule Moyashi.Post do
     field :name, :string, default: "Anonymous"
     field :email, :string
     field :body, :string
+    field :attach, :string
     field :parent_id, :integer, default: nil
     belongs_to :board, Moyashi.Board
 
@@ -12,7 +13,7 @@ defmodule Moyashi.Post do
   end
 
   @required_fields ~w(body)
-  @optional_fields ~w(name email parent_id)
+  @optional_fields ~w(name email parent_id attach)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

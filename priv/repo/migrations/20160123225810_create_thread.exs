@@ -6,6 +6,7 @@ defmodule Moyashi.Repo.Migrations.CreateThread do
       add :name, :string
       add :email, :string
       add :body, :string
+      add :attach, :string
       add :board_id, references(:boards, on_delete: :nothing)
 
       timestamps

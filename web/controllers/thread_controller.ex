@@ -3,6 +3,7 @@ defmodule Moyashi.ThreadController do
 
   alias Moyashi.Post
   alias Moyashi.Board
+  alias Mogrify
   import Ecto.Query
 
   def index(conn, %{"board_slug" => board_slug}) do
@@ -52,7 +53,15 @@ defmodule Moyashi.ThreadController do
     board = Board
     |> Repo.get_by(slug: board_slug)
 
-    changeset = Post.changeset(%Post{board_id: board.id}, post_params)
+    file_upload = post_params["file"]
+
+    image = Mogrify.open(file_upload.path)
+    |> Mogrify.copy
+    |> Mogrify.format("jpg")
+    |> Mogrify.resize("500x500")
+    |> Mogrify.save("files/" <> board_slug <> "/" <> to_string(:os.system_time(:milli_seconds)) <> ".jpg")
+
+    changeset = Post.changeset(%Post{board_id: board.id, attach: image.path}, post_params)
 
     case Repo.insert(changeset) do
       {:ok, _post} ->

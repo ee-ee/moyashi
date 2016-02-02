@@ -39,7 +39,8 @@ defmodule Moyashi.Mixfile do
      {:cowboy, "~> 1.0"},
      {:sqlite_ecto, "~> 1.0.0"},
      {:timex, "~> 1.0.0"},
-     {:hound, "~> 0.8"} ]
+     {:hound, "~> 0.8"},
+     {:mogrify, "~> 0.2"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

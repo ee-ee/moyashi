@@ -5,13 +5,14 @@ defmodule Moyashi.Thread do
     field :name, :string, default: "Anonymous"
     field :email, :string
     field :body, :string
+    field :attach, :string
     belongs_to :board, Moyashi.Board
 
     timestamps
   end
 
   @required_fields ~w(body)
-  @optional_fields ~w(name email)
+  @optional_fields ~w(name email attach)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
