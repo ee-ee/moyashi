@@ -62,7 +62,7 @@ defmodule Moyashi.ThreadController do
           id = post_params["parent_id"]
         end
 
-        channel = "threads:" <> board_slug <> "/" <> id
+        channel = "threads:" <> board_slug <> "/" <> to_string(id)
         Moyashi.Endpoint.broadcast! channel, "new_post",
         %{id: _post.id,
           name: _post.name,
