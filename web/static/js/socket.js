@@ -1,8 +1,9 @@
+'use strict';
 import App from "./app";
 import {Socket} from "phoenix";
+import Util from "./util";
 
 let socket = new Socket("/socket", {params: {token: window.userToken}});
-
 
 if(window.threadChannel) {
     socket.connect();
@@ -35,10 +36,16 @@ channel.on("new_post", payload => {
   }
   html += '</div>\
     <p class="info">\
-        <span class="name">'+payload.name+'</span>\
-        <time datetime="'+date+'">'+date+'</time>\
-        #'+payload.id+'</p>\
-    <div class="body">'+payload.body+'</div>';
+      <span class="name">' +
+        Util.escapeHtml(payload.name) +
+      '</span>\
+      <time datetime="' +
+        Util.escapeHtml(date) +
+      '">'+date+'</time>\
+      #'+ Util.escapeHtml(payload.id)+'</p>\
+    <div class="body">' +
+      Util.escapeHtml(payload.body) +
+    '</div>';
   postDiv.innerHTML = html;
   newPost.appendChild(postDiv);
 
