@@ -9,6 +9,7 @@ defmodule Moyashi.Repo.Migrations.CreatePost do
       add :attach, :string
       add :board_id, references(:boards, on_delete: :nothing)
       add :parent_id, :integer
+      add :bumped_at, :datetime
 
       timestamps
     end

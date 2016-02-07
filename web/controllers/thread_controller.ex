@@ -5,6 +5,7 @@ defmodule Moyashi.ThreadController do
   alias Moyashi.Board
   alias Mogrify
   import Ecto.Query
+  use Timex
 
   def index(conn, %{"board_slug" => board_slug}) do
     changeset = Post.changeset(%Post{})
@@ -74,6 +75,12 @@ defmodule Moyashi.ThreadController do
           id = _post.id
         else
           id = post_params["parent_id"]
+
+          # Update parent's bumped_at
+          parent_thread = Repo.get!(Post, id)
+          parent_thread = Ecto.Changeset.change parent_thread, bumped_at: Ecto.DateTime.utc
+
+          {:ok, _} = Repo.update parent_thread
         end
 
         channel = "threads:" <> board_slug <> "/" <> to_string(id)
@@ -83,6 +90,7 @@ defmodule Moyashi.ThreadController do
           body: _post.body,
           attach: attach,
           inserted_at: _post.inserted_at}
+
 
         conn
         |> put_flash(:info, "Post created  successfully.")

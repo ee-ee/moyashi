@@ -7,13 +7,14 @@ defmodule Moyashi.Post do
     field :body, :string
     field :attach, :string
     field :parent_id, :integer, default: nil
+    field :bumped_at, Ecto.DateTime
     belongs_to :board, Moyashi.Board
 
     timestamps
   end
 
   @required_fields ~w(body)
-  @optional_fields ~w(name email parent_id attach)
+  @optional_fields ~w(name email parent_id attach bumped_at)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
