@@ -22,6 +22,7 @@ defmodule Moyashi.Router do
     end
     post "/:board_slug/create", ThreadController, :create
     get "/:board_slug/thread/:thread_id", ThreadController, :show
+    get "/:board_slug/catalog", ThreadController, :catalog
     get "/:board_slug/:page", ThreadController, :index
     get "/:board_slug", ThreadController, :index
   end

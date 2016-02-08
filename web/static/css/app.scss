@@ -19,8 +19,13 @@ body {
     margin: 0 1rem;
 }
 
-.home, h1 {
+.home, h1, a.catalog {
+    display:block;
     text-align:center;
+}
+
+a.catalog {
+    margin-bottom:1rem;
 }
 
 .boardlist {
@@ -177,5 +182,32 @@ ul.pages {
     
     li {
         display:inline-block;
+    }
+}
+
+div.catalog {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content:center;
+
+    a.post {
+        display:block;
+        border:1px solid #eee;
+        padding:1rem;
+        margin:0.25rem;
+        text-decoration:none;
+        color:black;
+        overflow:auto;
+        width:200px;
+        max-height:250px;
+
+        &:hover {
+            border:1px solid $highlightBackground;
+            background:$postBackground;
+        }
+    }
+
+    div.files {
     }
 }

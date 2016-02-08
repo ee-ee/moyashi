@@ -58,6 +58,28 @@ defmodule Moyashi.ThreadController do
         changeset: changeset)
   end
 
+  def catalog(conn, params) do
+    changeset = Post.changeset(%Post{})
+    board_slug = params["board_slug"]
+
+    boards = Repo.all(Board)
+    board = Board
+    |> Repo.get_by(slug: board_slug)
+
+    # TODO this is ugly and inefficient
+    threads_query = from p in Post,
+        where: p.board_id == ^board.id,
+        where: is_nil(p.parent_id),
+        order_by: [desc: p.bumped_at]
+    threads = Repo.all(threads_query)
+
+    render(conn, "catalog.html",
+        boards: boards,
+        board: board,
+        threads: threads,
+        changeset: changeset)
+  end
+
   def new(conn, _params) do
     boards = Repo.all(Board)
     threads = Repo.all(Post)

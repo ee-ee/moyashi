@@ -1,0 +1,19 @@
+<h1>/<%= @board.slug %>/ - <%= @board.title %></h1>
+<%= link "Catalog", to: thread_path(@conn, :catalog, @board.slug), class: "catalog" %>
+<%= render "form.html",
+    changeset: @changeset,
+    action: thread_path(@conn, :create, @board.slug) %>
+<div class="catalog">
+<%= for thread <- @threads do %>
+    <a class="post op" id="<%= thread.id %>" href="<%= thread_path(@conn, :show, @board.slug, thread.id) %>">
+        <div class="files">
+            <%= if thread.attach do %>
+                <div class="file">
+                    <img class="thumb" src="/<%= thread.attach %>" height="100">
+                </div>
+            <% end %>
+        </div>
+        <div class="body"><%= thread.body %></div>
+    </a>
+<% end %>
+</div>
