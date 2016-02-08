@@ -1,5 +1,5 @@
 <%= if @post.parent_id !== nil do %>
-    <div class="post reply">
+    <div class="post reply" id="<%= @post.id %>">
 <% end %>
     <div class="files">
         <%= if @post.attach do %>
@@ -11,7 +11,7 @@
         <% end %>
     </div>
 <%= if @post.parent_id === nil do %>
-    <div class="post op">
+    <div class="post op" id="<%= @post.id %>">
 <% end %>
     <p class="info">
         <span class="name"><%= @post.name %></span>

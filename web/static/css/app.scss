@@ -1,5 +1,6 @@
 $h1Color: #033;
 $postBackground:#D6F0E4;
+$highlightBackground:#a9d8ff;
 $postBorderColor: #b6dbdc;
 $linkColor: #345456;
 $omittedColor: #5d5d5d;
@@ -113,6 +114,10 @@ div.post {
         border-color: $postBorderColor;
         margin-bottom:0.5rem;
         display:inline-block;
+    }
+
+    &.reply:target {
+        background:$highlightBackground;
     }
 
     p.info {

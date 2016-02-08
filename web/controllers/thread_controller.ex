@@ -92,10 +92,9 @@ defmodule Moyashi.ThreadController do
           attach: attach,
           inserted_at: _post.inserted_at}
 
-
         conn
         |> put_flash(:info, "Post created  successfully.")
-        |> redirect(to: thread_path(conn, :show, board_slug, id))
+        |> redirect(to: thread_path(conn, :show, board_slug, id) <> "#" <> to_string(_post.id))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset, boards: boards)
     end
