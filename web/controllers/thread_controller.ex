@@ -18,6 +18,7 @@ defmodule Moyashi.ThreadController do
     ops_query = from p in Post,
         where: p.board_id == ^board.id,
         where: is_nil(p.parent_id),
+        order_by: [desc: p.bumped_at],
         limit: 10
     ops = Repo.all(ops_query)
 
