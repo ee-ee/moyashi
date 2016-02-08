@@ -7,18 +7,32 @@ defmodule Moyashi.ThreadController do
   import Ecto.Query
   use Timex
 
-  def index(conn, %{"board_slug" => board_slug}) do
+  def index(conn, params) do
     changeset = Post.changeset(%Post{})
+    board_slug = params["board_slug"]
+
+    if params["page"] == nil do
+      page = 0
+    else
+      page = String.to_integer(params["page"]) - 1
+    end
+    offset = 10 * page
 
     boards = Repo.all(Board)
     board = Board
     |> Repo.get_by(slug: board_slug)
+
+    thread_count_query = from p in Post,
+        select: count(p.id),
+        where: is_nil(p.parent_id)
+    thread_count = Repo.one(thread_count_query)
 
     # TODO this is ugly and inefficient
     ops_query = from p in Post,
         where: p.board_id == ^board.id,
         where: is_nil(p.parent_id),
         order_by: [desc: p.bumped_at],
+        offset: ^offset,
         limit: 10
     ops = Repo.all(ops_query)
 
@@ -38,6 +52,8 @@ defmodule Moyashi.ThreadController do
     render(conn, "index.html",
         boards: boards,
         board: board,
+        current_page: page + 1,
+        thread_count: thread_count,
         threads: threads,
         changeset: changeset)
   end

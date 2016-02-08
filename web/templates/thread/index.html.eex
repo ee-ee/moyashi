@@ -11,3 +11,15 @@
         action: "index" %>
 <% end %>
 </div>
+<ul class="pages">
+    <%= for page <- pages(@thread_count) do %>
+        <li>
+            <%= if page === @current_page do %>
+                <span class="current"><%= to_string(page) %></span>
+            <%= else %>
+                <%= link to_string(page),
+                to: thread_path(@conn, :index, @board.slug, filter_one(page)) %>
+            <% end %>
+        </li>
+    <% end %>
+</ul>

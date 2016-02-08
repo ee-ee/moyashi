@@ -1,5 +1,5 @@
 <%= if @action == "show" do %>
-    <%= link "« Go Back", to: thread_path(@conn, :index, @board.slug), class: "return" %>
+    <%= link "« Go Back", to: thread_path(@conn, :index, @board.slug, ""), class: "return" %>
 <% end %>
 <hr>
 <div class="thread">
