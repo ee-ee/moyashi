@@ -99,7 +99,6 @@ defmodule Moyashi.ThreadController do
       image = Mogrify.open(file_upload.path)
       |> Mogrify.copy
       |> Mogrify.format("jpg")
-      |> Mogrify.resize("500x500")
       |> Mogrify.save("files/" <> board_slug <> "/" <> to_string(:os.system_time(:milli_seconds)) <> ".jpg")
       attach = image.path
     else
