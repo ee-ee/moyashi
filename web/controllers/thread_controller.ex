@@ -95,6 +95,10 @@ defmodule Moyashi.ThreadController do
 
     file_upload = post_params["form"]
 
+    File.mkdir("files")
+    File.mkdir("files/" <> board_slug)
+    File.mkdir("files/" <> board_slug <> "/thumbs")
+
     unless file_upload === nil do
       image = Mogrify.open(file_upload.path)
       |> Mogrify.copy
