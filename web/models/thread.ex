@@ -13,7 +13,7 @@ defmodule Moyashi.Thread do
   end
 
   @required_fields ~w(body)
-  @optional_fields ~w(name email attach bumped_at)
+  @optional_fields ~w(name email attach thumb bumped_at)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

@@ -5,7 +5,7 @@
         <%= if @post.attach do %>
             <div class="file">
               <a class="image" href="/<%= @post.attach %>" target="_blank">
-                <img class="thumb" src="/<%= @post.attach %>" width="255">
+                <img class="thumb" src="/<%= @post.thumb %>">
               </a>
             </div>
         <% end %>
