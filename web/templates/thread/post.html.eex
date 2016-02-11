@@ -14,7 +14,11 @@
     <div class="post op" id="<%= @post.id %>">
 <% end %>
     <p class="info">
-        <span class="name"><%= @post.name %></span>
+        <%= if @post.email !== "" do %>
+            <span class="name"><a href="mailto:<%= @post.email %>"><%= @post.name %></a></span>
+        <% else %>
+            <span class="name"><%= @post.name %></span>
+        <% end %>
         <time datetime="<%= @post.inserted_at %>">
             <%= Moyashi.Post.format_date(@post.inserted_at) %>
         </time>
