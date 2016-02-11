@@ -8,6 +8,8 @@
     <%= file_input f, :form %>
     <%= if assigns[:thread] do %>
         <%= hidden_input f, :parent_id, [value: hd(@thread).id] %>
+        <%= submit "Reply" %>
+    <% else %>
+        <%= submit "New Thread" %>
     <% end %>
-    <%= submit "Post" %>
 <% end %>
