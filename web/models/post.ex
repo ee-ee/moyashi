@@ -6,6 +6,7 @@ defmodule Moyashi.Post do
     field :email, :string
     field :body, :string
     field :attach, :string
+    field :thumb, :string
     field :parent_id, :integer, default: nil
     field :bumped_at, Ecto.DateTime, default: Ecto.DateTime.utc
     belongs_to :board, Moyashi.Board

@@ -3,6 +3,10 @@ defmodule Moyashi.ThreadView do
 
   def pages(thread_count) do
     lastpage = round(Float.ceil(thread_count / 10))
+    # Empty board fix
+    if lastpage === 0 do
+      lastpage = 1
+    end
     Enum.to_list(1 .. lastpage)
   end
 

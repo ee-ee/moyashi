@@ -30,7 +30,7 @@ channel.on("new_post", payload => {
   if(payload.attach) {
     html += '<div class="file">\
               <a class="image" href="/'+payload.attach+'" target="_blank">\
-                <img class="thumb" src="/'+payload.attach+'" width="255">\
+                <img class="thumb" src="/'+payload.thumb+'" width="255">\
               </a>\
             </div>';
   }
