@@ -24,3 +24,6 @@ erl_crash.dump
 /config/prod.secret.exs
 
 /files/
+
+# sqlite db file
+/*.sqlite3
