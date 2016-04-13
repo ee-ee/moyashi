@@ -1,4 +1,6 @@
 <div class="home">
-    <h1>🌱 ｍｏｙａｓｈｉ</h1>
+    <h1>
+        <img src="<%= static_path(@conn, "/images/logo-moyashi-64.png") %>">ｍｏｙａｓｈｉ
+    </h1>
     <p>Imageboards done right.</p>
 </div>
