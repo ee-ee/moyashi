@@ -1,4 +1,4 @@
-# 🌱 ｍｏｙａｓｈｉ
+#![Logo](https://i.imgur.com/qlIRj4d.png)ｍｏｙａｓｈｉ
 
 Imageboards done right.
 
