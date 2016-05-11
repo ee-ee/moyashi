@@ -5,7 +5,7 @@ Imageboards done right.
 ## Requirements
 
 ```
-sudo pacman -S elixir npm git
+sudo pacman -S elixir npm git make imagemagick sassc
 ```
 
 ## Installation
