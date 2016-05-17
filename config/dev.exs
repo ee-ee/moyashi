@@ -10,7 +10,8 @@ config :moyashi, Moyashi.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
-  check_origin: false
+  check_origin: false,
+  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
 
 # Watch static and templates for browser reloading.
 config :moyashi, Moyashi.Endpoint,
