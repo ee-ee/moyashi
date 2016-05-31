@@ -24,7 +24,7 @@
         </time>
         #<%= @post.id %>
     </p>
-    <div class="body"><%= @post.body %></div>
+    <div class="body"><%= text_to_html @post.body %></div>
     <%= if @action == "index" && @post.parent_id === nil do %>
         <p class="omitted"></p>
         <%= link "View Thread »", to: thread_path(@conn, :show, @board.slug, @post.id), class: "viewthread" %>
