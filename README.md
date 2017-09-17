@@ -1,4 +1,4 @@
-#![Logo](https://i.imgur.com/qlIRj4d.png)ｍｏｙａｓｈｉ
+# ![Logo](moyashi.png)ｍｏｙａｓｈｉ
 
 Imageboards done right.
 
