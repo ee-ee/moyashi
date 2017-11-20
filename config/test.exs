@@ -13,7 +13,7 @@ config :logger, level: :warn
 config :moyashi, Moyashi.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "p455w0rd",
+  password: System.get_env('PHX_TESTDB_PASSWORD'),
   database: "moyashi_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

@@ -51,7 +51,7 @@ config :phoenix, :stacktrace_depth, 20
 config :moyashi, Moyashi.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "p455w0rd",
+  password: System.get_env('PHX_DEVDB_PASSWORD'),
   database: "moyashi_dev",
   hostname: "localhost",
   pool_size: 10
