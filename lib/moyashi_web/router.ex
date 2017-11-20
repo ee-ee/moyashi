@@ -19,12 +19,10 @@ defmodule MoyashiWeb.Router do
     get "/", PageController, :index
   end
 
-  scope "/api" do
+  scope "/api", MoyashiWeb.API do
     pipe_through :api
 
-    resources "/boards", BoardController do
-      
-    end
+    resources "/boards", BoardController, only: [:index]
   end
 
   # Other scopes may use custom stacks.
