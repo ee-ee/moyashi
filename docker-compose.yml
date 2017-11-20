@@ -1,0 +1,18 @@
+version: "3"
+services:
+  web:
+    build: .
+    environment:
+    - PHX_TESTDB_PASSWORD
+    - PHX_DEVDB_PASSWORD
+    ports:
+    - "4000:4000"
+    volumes:
+    - .:/code
+    links:
+    - pg
+
+  pg:
+    image: "postgres:alpine"
+    environment:
+    - POSTGRES_PASSWORD
