@@ -1,6 +1,6 @@
 use Mix.Config
 
-# We don't run a server during test. If one is required,
+# We don"t run a server during test. If one is required,
 # you can enable the server option below.
 config :moyashi, MoyashiWeb.Endpoint,
   http: [port: 4001],
@@ -13,7 +13,7 @@ config :logger, level: :warn
 config :moyashi, Moyashi.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: System.get_env('PHX_TESTDB_PASSWORD'),
+  password: System.get_env("PHX_TESTDB_PASSWORD"),
   database: "moyashi_test",
-  hostname: "localhost",
+  hostname: "pg",
   pool: Ecto.Adapters.SQL.Sandbox
