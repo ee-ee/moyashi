@@ -20,6 +20,7 @@ defmodule MoyashiWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       import MoyashiWeb.Router.Helpers
+      import Moyashi.Factory
 
       # The default endpoint for testing
       @endpoint MoyashiWeb.Endpoint
