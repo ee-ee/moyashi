@@ -1,13 +1,14 @@
 defmodule MoyashiWeb.BoardControllerTest do
   use MoyashiWeb.ConnCase
 
-  test "#index renders a list of boards" do
-    conn = build_conn()
-    boards = Enum.map([1..10], fn -> insert(:board) end)
+  test "#index responds with all boards", %{conn: conn} do
+    boards = Enum.map([1..10], fn _ -> insert(:board) end)
 
-    conn = get conn, board_path(conn, :index)
+    response = conn
+    |> get(board_path(conn, :index))
+    |> json_response(200)
 
-    assert json_response(conn, 200) == render_json("index.json", boards: boards)
+    assert response == render_json("index.json", boards: boards)
   end
 
   defp render_json(template, assigns) do
