@@ -1,0 +1,40 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# Moyashi
+
+Moyashi is an api-first imageboard service.
+
+
+
+## Boards [/board]
+
+### kek (object)
++ id: 42 (number, required)
++ text: Hello World (string)
++ author (Author) - Author of the blog post.
+
+### Create a board [POST]
+
+You must have the right permissions to create a board.
+
++ Request (application/json)
+    + Attributes (array[kek])
+        
+
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /board/p
+    
+    + Body
+    
+            {
+                "name": "Programming",
+                "slug": "p",
+                "created_at": "date",
+                "threads" : 0,
+                "active": true
+            
+            }
